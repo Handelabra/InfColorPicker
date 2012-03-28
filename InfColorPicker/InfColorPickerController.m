@@ -71,7 +71,7 @@ static void HSVFromUIColor( UIColor* color, float* h, float* s, float* v )
 
 + (InfColorPickerController*) colorPickerViewController
 {
-	return [ [ [ self alloc ] initWithNibName: @"InfColorPickerView" bundle: nil ] autorelease ];
+	return [ [ self alloc ] initWithNibName: @"InfColorPickerView" bundle: nil  ];
 }
 
 //------------------------------------------------------------------------------
@@ -84,22 +84,6 @@ static void HSVFromUIColor( UIColor* color, float* h, float* s, float* v )
 //------------------------------------------------------------------------------
 #pragma mark	Memory management
 //------------------------------------------------------------------------------
-
-- (void) dealloc
-{
-	[ barView release ];
-	[ squareView release ];
-	[ barPicker release ];
-	[ squarePicker release ];
-	[ sourceColorView release ];
-	[ resultColorView release ];
-	[ navController release ];
-	
-	[ sourceColor release ];
-	[ resultColor release ];
-	
-	[ super dealloc ];
-}
 
 //------------------------------------------------------------------------------
 #pragma mark	Creation
@@ -165,11 +149,11 @@ static void HSVFromUIColor( UIColor* color, float* h, float* s, float* v )
 
 - (void) presentModallyOverViewController: (UIViewController*) controller
 {
-	UINavigationController* nav = [ [ [ UINavigationController alloc ] initWithRootViewController: self ] autorelease ];
+	UINavigationController* nav = [ [ UINavigationController alloc ] initWithRootViewController: self ];
 	
 	nav.navigationBar.barStyle = UIBarStyleBlackOpaque;
 	
-	self.navigationItem.rightBarButtonItem = [ [ [ UIBarButtonItem alloc ] initWithBarButtonSystemItem: UIBarButtonSystemItemDone target: self action: @selector( done: ) ] autorelease ];
+	self.navigationItem.rightBarButtonItem = [ [ UIBarButtonItem alloc ] initWithBarButtonSystemItem: UIBarButtonSystemItemDone target: self action: @selector( done: ) ];
 				
 	[ controller presentModalViewController: nav animated: YES ];
 }
@@ -233,9 +217,8 @@ static void HSVFromUIColor( UIColor* color, float* h, float* s, float* v )
 	
 	[ self willChangeValueForKey: @"resultColor" ];
 	
-	[ resultColor release ];
-	resultColor = [ [ UIColor colorWithHue: hue saturation: saturation 
-								brightness: brightness alpha: 1.0f ] retain ];
+	resultColor = [ UIColor colorWithHue: hue saturation: saturation 
+								brightness: brightness alpha: 1.0f ] ;
 	
 	[ self didChangeValueForKey: @"resultColor" ];
 	
@@ -249,8 +232,7 @@ static void HSVFromUIColor( UIColor* color, float* h, float* s, float* v )
 - (void) setResultColor: (UIColor*) newValue
 {
 	if( ![ resultColor isEqual: newValue ] ) {
-		[ resultColor release ];
-		resultColor = [ newValue retain ];
+		resultColor = newValue ;
 		
 		float h = hue;
 		HSVFromUIColor( newValue, &h, &saturation, &brightness );
@@ -276,8 +258,7 @@ static void HSVFromUIColor( UIColor* color, float* h, float* s, float* v )
 - (void) setSourceColor: (UIColor*) newValue
 {
 	if( ![ sourceColor isEqual: newValue ] ) {
-		[ sourceColor release ];
-		sourceColor = [ newValue retain ];
+		sourceColor = newValue ;
 		
 		sourceColorView.backgroundColor = sourceColor;
 		

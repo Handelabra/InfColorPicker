@@ -36,20 +36,12 @@
 
 //------------------------------------------------------------------------------
 
-- (void) dealloc
-{
-	[ color release ];
-	
-	[ super dealloc ];
-}
-
 //------------------------------------------------------------------------------
 
 - (void) setColor: (UIColor*) newColor
 {
 	if( ![ color isEqual: newColor ] ) {
-		[ color release ];
-		color = [ newColor retain ];
+		color = newColor;
 		
 		[ self setNeedsDisplay ];
 	}
