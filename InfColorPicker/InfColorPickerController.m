@@ -270,10 +270,10 @@ static void HSVFromUIColor( UIColor* color, float* h, float* s, float* v )
 #pragma mark	UIViewController( UIPopoverController ) methods
 //------------------------------------------------------------------------------
 
-- (CGSize) contentSizeForViewInPopover
-{
-	return [ [ self class ] idealSizeForViewInPopover ];
-}
+//- (CGSize) contentSizeForViewInPopover
+//{
+//	return [ [ self class ] idealSizeForViewInPopover ];
+//}
 
 //------------------------------------------------------------------------------
 
